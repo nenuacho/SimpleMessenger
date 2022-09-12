@@ -1,0 +1,13 @@
+{
+  "name": "SimpleMessenger",
+  "author": "privatevoid",
+  "displayName": "SimpleMessenger",
+  "unity": "2020.3",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://privatevoid@bitbucket.org/privatevoid/simplemessenger.git"
+  }
+}
