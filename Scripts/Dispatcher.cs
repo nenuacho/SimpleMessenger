@@ -12,6 +12,8 @@ namespace Starbugs.SimpleMessenger
 
         private readonly Dictionary<Type, object> _subscriptions = new Dictionary<Type, object>();
 
+        public int CallbacksCount => _subscriptions.Sum(x => ((ISubscription) x.Value).CallbacksCount);
+
         public void Publish<T>(T message)
         {
             var messageType = message.GetType();
@@ -60,6 +62,10 @@ namespace Starbugs.SimpleMessenger
                 if (callback != null)
                 {
                     subscription.Callbacks.Remove(callback);
+                    if (subscription.Callbacks.Count == 0)
+                    {
+                        _subscriptions.Remove(type);
+                    }
                 }
             }
         }

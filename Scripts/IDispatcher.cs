@@ -8,5 +8,6 @@ namespace Starbugs.SimpleMessenger
         void Subscribe<T>(Action<T> action, Func<T, bool> precondition = null);
         void Unsubscribe<T>(Action<T> action);
         void UnsubscribeAll();
+        public int CallbacksCount { get; }
     }
 }

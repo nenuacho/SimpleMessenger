@@ -2,7 +2,7 @@ using System;
 
 namespace Starbugs.SimpleMessenger
 {
-    public class CallbackWithPrecondition<T>
+    internal class CallbackWithPrecondition<T>
     {
         public Action<T> Action { get; }
         public Func<T, bool> Precondition { get; }
