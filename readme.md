@@ -1,6 +1,6 @@
 # SimpleMessenger
 
-Simple and fast sub/pub messenger.
+Simple and fast pub/sub messenger.
 
 ## Unity Installation
 
@@ -28,14 +28,15 @@ Dispatcher.Default.Publish(new ChatMessage() {Author = "Username", Text = "Hello
 Subscribe
 ```csharp
 Dispatcher.Default.Subscribe<ChatMessage>(OnChatMessage);
-
+```
+```csharp
 private void OnChatMessage(ChatMessage message)
 {
     Debug.Log($"{message.Author} says {message.Text}";);
 }
 ```
 
-## Instead of singletone, you can use it with any IOC FW
+## Instead of singletone, you can use it with any IOC FW or Service Locator
 Zenject example:
 ```csharp
 Container.Bind<IDispatcher>().To<Dispatcher>().AsSingle();
