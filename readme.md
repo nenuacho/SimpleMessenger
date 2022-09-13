@@ -46,6 +46,7 @@ Container.Bind<IDispatcher>().To<Dispatcher>().AsSingle();
 ```
 ```csharp
 _dispatcher.Subscribe<ChatMessage>(OnChatMessage);
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
