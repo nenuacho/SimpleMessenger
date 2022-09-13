@@ -10,7 +10,7 @@ namespace Starbugs.SimpleMessenger
 
         public static Dispatcher Default => _instance ??= new Dispatcher();
 
-        private readonly Dictionary<Type, object> _subscriptions = new();
+        private readonly Dictionary<Type, object> _subscriptions = new Dictionary<Type, object>();
 
         public void Publish<T>(T message)
         {
