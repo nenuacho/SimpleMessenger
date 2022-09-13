@@ -10,9 +10,9 @@ namespace Starbugs.SimpleMessenger
 
         public static Dispatcher Default => _instance ??= new Dispatcher();
 
-        private readonly Dictionary<Type, object> _subscriptions = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, ISubscription> _subscriptions = new Dictionary<Type, ISubscription>();
 
-        public int CallbacksCount => _subscriptions.Sum(x => ((ISubscription) x.Value).CallbacksCount);
+        public int CallbacksCount => _subscriptions.Sum(x => (x.Value).CallbacksCount);
 
         public void Publish<T>(T message)
         {
