@@ -14,7 +14,7 @@ Window -> Package Manager -> + -> Add package from git URL -> https://privatevoi
 
 Message example
 ```csharp
-public class ChatMessage
+public struct ChatMessage
 {
     public string Author { get;set; }
     public string Text { get;set; }
