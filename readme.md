@@ -32,8 +32,22 @@ Dispatcher.Default.Sub<ChatMessage>(OnChatMessage);
 ```csharp
 private void OnChatMessage(ChatMessage message)
 {
-    Debug.Log($"{message.Author} says {message.Text}";);
+    Debug.Log($"{message.Author} says {message.Text}");
 }
+```
+You can filter messages with precondition function:
+```csharp
+Dispatcher.Default.Sub<ChatMessage>(OnChatMessage, m => !_blackList.Contains(m.Author));
+```
+
+Unsubscribe
+```csharp
+Dispatcher.Default.Unsub<ChatMessage>(OnChatMessage);
+```
+
+Remove all subscribes
+```csharp
+Dispatcher.Default.UnsubAll();
 ```
 
 ## Instead of singletone, you can use it with any IOC FW or Service Locator
