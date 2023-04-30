@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nenuacho.SimpleMessenger.Scripts;
 
-namespace Starbugs.SimpleMessenger
+namespace Nenuacho.SimpleMessenger.Scripts
 {
     internal class Subscription<T> : ISubscription
     {

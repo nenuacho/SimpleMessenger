@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Starbugs.SimpleMessenger;
 
 namespace Nenuacho.SimpleMessenger.Scripts
 {
@@ -13,13 +12,13 @@ namespace Nenuacho.SimpleMessenger.Scripts
 
         private readonly Dictionary<Type, ISubscription> _subscriptions = new();
 
-        public int CallbacksCount => _subscriptions.Sum(x => (x.Value).CallbacksCount);
+        public int CallbacksCount => _subscriptions.Sum(x => x.Value.CallbacksCount);
 
         public void Pub<T>(T message)
         {
-            var messageType = message.GetType();
+            var type = typeof(T);
 
-            if (_subscriptions.TryGetValue(messageType, out var result))
+            if (_subscriptions.TryGetValue(type, out var result))
             {
                 var subscription = (Subscription<T>) result;
                 foreach (var callback in subscription.Callbacks)

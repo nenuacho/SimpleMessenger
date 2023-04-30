@@ -1,6 +1,6 @@
 using System;
 
-namespace Starbugs.SimpleMessenger
+namespace Nenuacho.SimpleMessenger.Scripts
 {
     public interface IDispatcher
     {
