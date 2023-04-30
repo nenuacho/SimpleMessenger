@@ -1,6 +1,6 @@
 # SimpleMessenger
 
-Simple and fast pub/sub messenger. Works with unity, but does not depend on it
+Simple, fast and non-alloc pub/sub messenger. Works with unity, but does not depend on it
 
 ## Unity Installation
 
