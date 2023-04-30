@@ -1,7 +1,7 @@
 {
-  "name": "simplemessenger",
-  "author": "privatevoid",
-  "displayName": "SimpleMessenger",
+  "name": "com.nenuacho.simplemessenger",
+  "author": "Nenuacho",
+  "displayName": "Nenuacho SimpleMessenger",
   "unity": "2020.3",
   "version": "1.0.0",
   "dependencies": {

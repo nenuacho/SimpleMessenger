@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Starbugs.SimpleMessenger;
 
-namespace Starbugs.SimpleMessenger
+namespace Nenuacho.SimpleMessenger.Scripts
 {
     public class Dispatcher : IDispatcher
     {
@@ -10,18 +11,17 @@ namespace Starbugs.SimpleMessenger
 
         public static Dispatcher Default => _instance ??= new Dispatcher();
 
-        private readonly Dictionary<Type, ISubscription> _subscriptions = new Dictionary<Type, ISubscription>();
+        private readonly Dictionary<Type, ISubscription> _subscriptions = new();
 
         public int CallbacksCount => _subscriptions.Sum(x => (x.Value).CallbacksCount);
 
-        public void Publish<T>(T message)
+        public void Pub<T>(T message)
         {
             var messageType = message.GetType();
 
-            if (_subscriptions.ContainsKey(messageType))
+            if (_subscriptions.TryGetValue(messageType, out var result))
             {
-                var subscription = (Subscription<T>) _subscriptions[messageType];
-
+                var subscription = (Subscription<T>) result;
                 foreach (var callback in subscription.Callbacks)
                 {
                     if (callback.Precondition == null || callback.Precondition(message))
@@ -32,15 +32,15 @@ namespace Starbugs.SimpleMessenger
             }
         }
 
-        public void Subscribe<T>(Action<T> action, Func<T, bool> precondition = null)
+        public void Sub<T>(Action<T> action, Func<T, bool> precondition = null)
         {
             var type = typeof(T);
 
             Subscription<T> subscription;
 
-            if (_subscriptions.ContainsKey(type))
+            if (_subscriptions.TryGetValue(type, out var result))
             {
-                subscription = (Subscription<T>) _subscriptions[type];
+                subscription = (Subscription<T>) result;
             }
             else
             {
@@ -51,7 +51,7 @@ namespace Starbugs.SimpleMessenger
             subscription.Add(action, precondition);
         }
 
-        public void Unsubscribe<T>(Action<T> action)
+        public void Unsub<T>(Action<T> action)
         {
             var type = typeof(T);
 
@@ -70,7 +70,7 @@ namespace Starbugs.SimpleMessenger
             }
         }
 
-        public void UnsubscribeAll()
+        public void UnsubAll()
         {
             _subscriptions.Clear();
         }

@@ -4,10 +4,10 @@ namespace Starbugs.SimpleMessenger
 {
     public interface IDispatcher
     {
-        void Publish<T>(T message);
-        void Subscribe<T>(Action<T> action, Func<T, bool> precondition = null);
-        void Unsubscribe<T>(Action<T> action);
-        void UnsubscribeAll();
+        void Pub<T>(T message);
+        void Sub<T>(Action<T> action, Func<T, bool> precondition = null);
+        void Unsub<T>(Action<T> action);
+        void UnsubAll();
         public int CallbacksCount { get; }
     }
 }
