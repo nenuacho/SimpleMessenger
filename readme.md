@@ -23,11 +23,11 @@ public class ChatMessage
 
 Publish
 ```csharp
-Dispatcher.Default.Publish(new ChatMessage() {Author = "Username", Text = "Hello"});
+Dispatcher.Default.Pub(new ChatMessage() {Author = "Username", Text = "Hello"});
 ```
 Subscribe
 ```csharp
-Dispatcher.Default.Subscribe<ChatMessage>(OnChatMessage);
+Dispatcher.Default.Sub<ChatMessage>(OnChatMessage);
 ```
 ```csharp
 private void OnChatMessage(ChatMessage message)
@@ -45,7 +45,7 @@ Container.Bind<IDispatcher>().To<Dispatcher>().AsSingle();
 [Inject] IDispatcher _dispatcher;
 ```
 ```csharp
-_dispatcher.Subscribe<ChatMessage>(OnChatMessage);
+_dispatcher.Sub<ChatMessage>(OnChatMessage);
 ```
 
 ## License
