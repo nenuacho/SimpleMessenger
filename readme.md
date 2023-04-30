@@ -7,33 +7,47 @@ Simple and fast pub/sub messenger. Works with unity, but does not depend on it
 In the Unity editor: 
 
 ```bash
-Window -> Package Manager -> + -> Add package from git URL -> https://privatevoid@bitbucket.org/privatevoid/simplemessenger.git
+Window -> Package Manager -> + -> Add package from git URL -> https://github.com/nenuacho/SimpleMessenger.git
 ```
 
 ## Usage
-
-Message example
+You can use class or struct as message:
 ```csharp
-public class ChatMessage
+public struct ChatMessage
 {
-    public string Author { get;set; }
-    public string Text { get;set; }
+    public string Author;
+    public string Text;
 }
 ```
 
+
 Publish
 ```csharp
-Dispatcher.Default.Publish(new ChatMessage() {Author = "Username", Text = "Hello"});
+Dispatcher.Default.Pub(new ChatMessage() {Author = "Username", Text = "Hello"});
 ```
 Subscribe
 ```csharp
-Dispatcher.Default.Subscribe<ChatMessage>(OnChatMessage);
+Dispatcher.Default.Sub<ChatMessage>(OnChatMessage);
 ```
 ```csharp
 private void OnChatMessage(ChatMessage message)
 {
-    Debug.Log($"{message.Author} says {message.Text}";);
+    Debug.Log($"{message.Author} says {message.Text}");
 }
+```
+You can filter messages with precondition function:
+```csharp
+Dispatcher.Default.Sub<ChatMessage>(OnChatMessage, m => !_blackList.Contains(m.Author));
+```
+
+Unsubscribe
+```csharp
+Dispatcher.Default.Unsub<ChatMessage>(OnChatMessage);
+```
+
+Remove all subscribes
+```csharp
+Dispatcher.Default.UnsubAll();
 ```
 
 ## Instead of singletone, you can use it with any IOC FW or Service Locator
@@ -45,7 +59,7 @@ Container.Bind<IDispatcher>().To<Dispatcher>().AsSingle();
 [Inject] IDispatcher _dispatcher;
 ```
 ```csharp
-_dispatcher.Subscribe<ChatMessage>(OnChatMessage);
+_dispatcher.Sub<ChatMessage>(OnChatMessage);
 ```
 
 ## License
