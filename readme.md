@@ -7,19 +7,19 @@ Simple and fast pub/sub messenger. Works with unity, but does not depend on it
 In the Unity editor: 
 
 ```bash
-Window -> Package Manager -> + -> Add package from git URL -> https://privatevoid@bitbucket.org/privatevoid/simplemessenger.git
+Window -> Package Manager -> + -> Add package from git URL -> https://github.com/nenuacho/SimpleMessenger.git
 ```
 
 ## Usage
-
-Message example
+You can use class or struct as message:
 ```csharp
 public struct ChatMessage
 {
-    public string Author { get;set; }
-    public string Text { get;set; }
+    public string Author;
+    public string Text;
 }
 ```
+
 
 Publish
 ```csharp
