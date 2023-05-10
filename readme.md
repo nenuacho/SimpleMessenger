@@ -11,7 +11,7 @@ Window -> Package Manager -> + -> Add package from git URL -> https://github.com
 ```
 
 ## Usage
-You can use class or struct as message:
+You can use class(if you are oop cult member) or struct as message:
 ```csharp
 public struct ChatMessage
 {
